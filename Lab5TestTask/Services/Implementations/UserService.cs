@@ -20,17 +20,17 @@ public class UserService : IUserService
     }
     public async Task<User> GetUserAsync()
     {
-		return await _dbContext.Users
-			.AsNoTracking()
-			.OrderByDescending(u => u.Sessions.Count) 
-			.FirstOrDefaultAsync();
-	}
+        return await _dbContext.Users
+            .AsNoTracking()
+            .OrderByDescending(u => u.Sessions.Count) 
+            .FirstOrDefaultAsync();
+    }
 
     public async Task<List<User>> GetUsersAsync()
     {
-		return await _dbContext.Users
-			.AsNoTracking()
-			.Where(u => u.Sessions.Any(s => s.DeviceType == DeviceType.Mobile)) 
-			.ToListAsync();
-	}
+        return await _dbContext.Users
+            .AsNoTracking()
+            .Where(u => u.Sessions.Any(s => s.DeviceType == DeviceType.Mobile)) 
+            .ToListAsync();
+    }
 }

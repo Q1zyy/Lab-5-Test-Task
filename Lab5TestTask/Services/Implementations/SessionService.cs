@@ -21,18 +21,18 @@ public class SessionService : ISessionService
 
     public async Task<Session> GetSessionAsync()
     {
-		return await _dbContext.Sessions
-	        .AsNoTracking()
+        return await _dbContext.Sessions
+            .AsNoTracking()
             .Where(s => s.DeviceType == DeviceType.Desktop)
-	        .OrderBy(s => s.StartedAtUTC)
-			.FirstOrDefaultAsync();
-	}
+            .OrderBy(s => s.StartedAtUTC)
+            .FirstOrDefaultAsync();
+    }
 
     public async Task<List<Session>> GetSessionsAsync()
     {
-		return await _dbContext.Sessions
+        return await _dbContext.Sessions
             .AsNoTracking()
-			.Where(s => s.User.Status == UserStatus.Active && s.EndedAtUTC < new DateTime(2025, 1, 1))
-	        .ToListAsync();
-	}
+            .Where(s => s.User.Status == UserStatus.Active && s.EndedAtUTC < new DateTime(2025, 1, 1))
+            .ToListAsync();
+    }
 }
